@@ -1,19 +1,16 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
-
+name: test-integration
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    timeout-minutes: 5
     env:
       ORIGIN: ${{ secrets.ORIGIN }}
       PORT: ${{ secrets.PORT }}
@@ -26,15 +23,17 @@ jobs:
       MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
       MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
       MAILGUN_FROM_EMAIL: ${{ secrets.MAILGUN_FROM_EMAIL }}
-    
     strategy:
       matrix:
         node-version: [10.x, 12.x, 14.x]
-
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: yarn test
+    - name: Install
+      run: yarn install
+    - name: Generate env file
+    - name: Run test
+    - run: docker-compose -f docker-compose.test.yaml up --exit-code-from-web
