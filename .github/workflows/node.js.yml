@@ -34,6 +34,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Install
       run: yarn install
-    - name: Generate env file
     - name: Run test
-    - run: docker-compose -f docker-compose.test.yaml up --exit-code-from-web
+      run: docker-compose -f docker-compose.test.yaml up --exit-code-from-web
