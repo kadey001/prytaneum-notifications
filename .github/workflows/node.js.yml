@@ -35,4 +35,4 @@ jobs:
     - name: Install
       run: yarn install
     - name: Run test
-      run: docker-compose -f docker-compose.test.yaml up --build --remove-orphans --exit-code-from-web --force-recreate
+      run: docker-compose -f docker-compose.test.yaml up --exit-code-from-web --force-recreate
