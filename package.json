@@ -8,6 +8,8 @@
         "test": "jest --watchAll --runInBand --coverage",
         "test:ci": "jest",
         "build:types": "tsc --emitDeclarationOnly",
+        "build:app": "babel ./src -d ./dist --extensions \".ts\"",
+        "build": "yarn build:app && yarn build:types"
         "eslint:github-action": "node ./node_modules/eslint/bin/eslint . --ignore-path .gitignore"
     },
     "devDependencies": {
