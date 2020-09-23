@@ -51,6 +51,4 @@ jobs:
 #     - name: Run test
 #       run: docker-compose -f docker-compose.test.yaml up --exit-code-from-web --force-recreate
     - name: Run tests
-      run: |
-        docker-compose --file docker-compose.test.yml build
-        docker-compose --file docker-compose.test.yml run sut
+      run: docker-compose --file docker-compose.test.yml run sut
