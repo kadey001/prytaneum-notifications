@@ -52,9 +52,5 @@ jobs:
 #       run: docker-compose -f docker-compose.test.yaml up --exit-code-from-web --force-recreate
     - name: Run tests
       run: |
-        if [ -f docker-compose.test.yml ]; then
-          docker-compose --file docker-compose.test.yml build
-          docker-compose --file docker-compose.test.yml run sut
-        else
-          docker build . --file Dockerfile
-        fi
+        docker-compose --file docker-compose.test.yml build
+        docker-compose --file docker-compose.test.yml run sut
