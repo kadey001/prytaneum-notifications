@@ -8,11 +8,11 @@ EXPOSE 3002
 # BUILD
 FROM BASE_IMAGE as BUILD_IMAGE
 COPY . .
-RUN yarn build \
-	# yarn doesn't have a prune for production cause ??
-	&& npm prune --production \
-	&& yarn cache clean \
-	&& yarn autoclean --force
+# RUN yarn build \
+# 	# yarn doesn't have a prune for production cause ??
+# 	&& npm prune --production \
+# 	&& yarn cache clean \
+# 	&& yarn autoclean --force
 
 # PROD
 FROM node:14.7.0-alpine
