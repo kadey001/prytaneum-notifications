@@ -8,7 +8,7 @@
         "test": "jest --watchAll --runInBand --coverage",
         "test:ci": "jest",
         "build:types": "tsc --emitDeclarationOnly",
-        "eslint:github-action": "eslint src/"
+        "eslint:github-action": "yarn ./node_modules/eslint/bin/eslint . --ignore-path .gitignore"
     },
     "devDependencies": {
         "@babel/cli": "^7.10.3",
