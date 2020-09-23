@@ -34,5 +34,27 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Install
       run: yarn install
-    - name: Run test
-      run: docker-compose -f docker-compose.test.yaml up --exit-code-from-web --force-recreate
+    - name: Create .env file
+      uses: SpicyPizza/create-envfile@v1
+      with:
+        ORIGIN: ${{ secrets.ORIGIN }}
+        PORT: ${{ secrets.PORT }}
+        NODE_ENV: ${{ secrets.NODE_ENV }}
+        CORS_ORIGIN: ${{ secrets.CORS_ORIGIN }}
+        DB_URL: ${{ secrets.DB_URL }}
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}
+        AMQP_URL: ${{ secrets.AMQP_URL }}
+        MAILGUN_ORIGIN: ${{ secrets.MAILGUN_ORIGIN }}
+        MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
+        MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
+        MAILGUN_FROM_EMAIL: ${{ secrets.MAILGUN_FROM_EMAIL }}
+#     - name: Run test
+#       run: docker-compose -f docker-compose.test.yaml up --exit-code-from-web --force-recreate
+    - name: Run tests
+      run: |
+        if [ -f docker-compose.test.yml ]; then
+          docker-compose --file docker-compose.test.yml build
+          docker-compose --file docker-compose.test.yml run sut
+        else
+          docker build . --file Dockerfile
+        fi
