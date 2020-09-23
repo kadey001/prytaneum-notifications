@@ -7,7 +7,8 @@
         "start": "nodemon -e ts,js,json --exec \"babel-node -x \".ts\" src\"",
         "test": "jest --watchAll --runInBand --coverage",
         "test:ci": "jest",
-        "build:types": "tsc --emitDeclarationOnly"
+        "build:types": "tsc --emitDeclarationOnly",
+        "eslint:github-action": "eslint src/"
     },
     "devDependencies": {
         "@babel/cli": "^7.10.3",
