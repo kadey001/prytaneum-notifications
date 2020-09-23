@@ -16,13 +16,12 @@ jobs:
       # Check out the repository
       - uses: actions/checkout@v1
 
-      # Install Node.js
-      - uses: actions/setup-node@v1
+      # Install dependences
+      - uses: borales/actions-yarn@v2.0.0
         with:
-          node-version: 12
-
-      # Install your dependencies
-      - run: yarn install
+          cmd: install
 
       # Run ESLint
-      - uses: eslint/github-action@v0
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: eslint:github-action
