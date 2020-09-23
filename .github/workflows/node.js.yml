@@ -11,18 +11,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    env:
-      ORIGIN: ${{ secrets.ORIGIN }}
-      PORT: ${{ secrets.PORT }}
-      NODE_ENV: ${{ secrets.NODE_ENV }}
-      CORS_ORIGIN: ${{ secrets.CORS_ORIGIN }}
-      DB_URL: ${{ secrets.DB_URL }}
-      JWT_SECRET: ${{ secrets.JWT_SECRET }}
-      AMQP_URL: ${{ secrets.AMQP_URL }}
-      MAILGUN_ORIGIN: ${{ secrets.MAILGUN_ORIGIN }}
-      MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
-      MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
-      MAILGUN_FROM_EMAIL: ${{ secrets.MAILGUN_FROM_EMAIL }}
+#     env:
+#       ORIGIN: ${{ secrets.ORIGIN }}
+#       PORT: ${{ secrets.PORT }}
+#       NODE_ENV: ${{ secrets.NODE_ENV }}
+#       CORS_ORIGIN: ${{ secrets.CORS_ORIGIN }}
+#       DB_URL: ${{ secrets.DB_URL }}
+#       JWT_SECRET: ${{ secrets.JWT_SECRET }}
+#       AMQP_URL: ${{ secrets.AMQP_URL }}
+#       MAILGUN_ORIGIN: ${{ secrets.MAILGUN_ORIGIN }}
+#       MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
+#       MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
+#       MAILGUN_FROM_EMAIL: ${{ secrets.MAILGUN_FROM_EMAIL }}
     strategy:
       matrix:
         node-version: [10.x, 12.x, 14.x]
@@ -32,8 +32,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Install
-      run: yarn install
+#     - name: Install
+#       run: yarn install
     - name: Create .env file
       uses: SpicyPizza/create-envfile@v1
       with:
