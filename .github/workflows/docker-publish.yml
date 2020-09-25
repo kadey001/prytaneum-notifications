@@ -36,13 +36,7 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             - name: Run tests
-              run: |
-                  if [ -f docker-compose.test.yml ]; then
-                    docker-compose --file docker-compose.test.yaml build --no-cache build
-                    docker-compose --file docker-compose.test.yaml run notification-service
-                  else
-                    docker build . --file Dockerfile
-                  fi
+              run: docker-compose -f docker-compose.test.yaml up
 
     # Push image to GitHub Packages.
     # See also https://docs.docker.com/docker-hub/builds/
