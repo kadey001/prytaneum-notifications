@@ -36,7 +36,9 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             - name: Run tests
-              run: docker-compose -f docker-compose.test.yaml up
+              run: |
+                  docker-compose --file docker-compose.test.yaml build --no-cache build
+                  docker-compose --file docker-compose.test.yaml run sut
 
     # Push image to GitHub Packages.
     # See also https://docs.docker.com/docker-hub/builds/
