@@ -16,33 +16,30 @@ on:
 env:
     # TODO: Change variable to your image's name.
     IMAGE_NAME: image
+    ORIGIN: ${{ secrets.ORIGIN }}
+    PORT: ${{ secrets.PORT }}
+    NODE_ENV: ${{ secrets.NODE_ENV }}
+    CORS_ORIGIN: ${{ secrets.CORS_ORIGIN }}
+    DB_URL: ${{ secrets.DB_URL }}
+    JWT_SECRET: ${{ secrets.JWT_SECRET }}
+    AMQP_URL: ${{ secrets.AMQP_URL }}
+    MAILGUN_ORIGIN: ${{ secrets.MAILGUN_ORIGIN }}
+    MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
+    MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
+    MAILGUN_FROM_EMAIL: ${{ secrets.MAILGUN_FROM_EMAIL }}
 
 jobs:
     # Run tests.
     # See also https://docs.docker.com/docker-hub/builds/automated-testing/
-    test:
+    run docker-compose.test.yml:
         runs-on: ubuntu-latest
-
         steps:
-        - name: Create .env file
-          uses: SpicyPizza/create-envfile@v1
-          with:
-              ORIGIN: ${{ secrets.ORIGIN }}
-              PORT: ${{ secrets.PORT }}
-              NODE_ENV: ${{ secrets.NODE_ENV }}
-              CORS_ORIGIN: ${{ secrets.CORS_ORIGIN }}
-              DB_URL: ${{ secrets.DB_URL }}
-              JWT_SECRET: ${{ secrets.JWT_SECRET }}
-              AMQP_URL: ${{ secrets.AMQP_URL }}
-              MAILGUN_ORIGIN: ${{ secrets.MAILGUN_ORIGIN }}
-              MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
-              MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
-              MAILGUN_FROM_EMAIL: ${{ secrets.MAILGUN_FROM_EMAIL }}
+        - uses: actions/checkout@v2
         - name: Run tests
           run: |
               if [ -f docker-compose.test.yml ]; then
-                docker-compose --file docker-compose.test.yml build
-                docker-compose --file docker-compose.test.yml run sut
+                docker-compose --file docker-compose.test.yaml build
+                docker-compose --file docker-compose.test.yaml run sut
               else
                 docker build . --file Dockerfile
               fi
