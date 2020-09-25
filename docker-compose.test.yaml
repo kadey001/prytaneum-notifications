@@ -1,9 +1,9 @@
 version: '3.8'
 services:
-    sut:
-        build: .
-        depends_on: 
-            - notification-service
+    # sut:
+    #     build: .
+    #     depends_on: 
+    #         - notification-service
     notification-service:
         build:
             context: .
