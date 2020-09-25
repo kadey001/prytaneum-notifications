@@ -31,7 +31,7 @@ env:
 jobs:
     # Run tests.
     # See also https://docs.docker.com/docker-hub/builds/automated-testing/
-    run docker-compose.test.yml:
+    tests:
         runs-on: ubuntu-latest
         steps:
         - uses: actions/checkout@v2
