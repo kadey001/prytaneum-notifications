@@ -37,7 +37,7 @@ jobs:
             - uses: actions/checkout@v2
             - name: Run tests
               run: |
-                  docker-compose --file docker-compose.test.yaml run sut
+                  docker-compose --file docker-compose.test.yaml run --build sut
 
     # Push image to GitHub Packages.
     # See also https://docs.docker.com/docker-hub/builds/
