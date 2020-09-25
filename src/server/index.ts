@@ -20,13 +20,13 @@ async function makeServer() {
         });
         await rabbitmqConnect();
         // Start notification Consumer
-        const notificationJob = scheule.scheduleJob(
-            '0 */30 * * * *', // Every 30 minuites
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises
-            async () => {
-                await notificationConsumer();
-            }
-        );
+//         const notificationJob = scheule.scheduleJob(
+//             '0 */30 * * * *', // Every 30 minuites
+//             // eslint-disable-next-line @typescript-eslint/no-misused-promises
+//             async () => {
+//                 await notificationConsumer();
+//             }
+//         );
         /* 
             this is so that we can guarantee we are connected to the db
             before the server exposes itself on a port
