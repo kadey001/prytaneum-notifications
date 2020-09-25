@@ -35,8 +35,14 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Run yarn build
-              run: yarn install
-              run: yarn build
+              - uses: borales/actions-yarn@v2.0.0
+              with:
+                  cmd: install
+
+            # Run ESLint
+            - uses: borales/actions-yarn@v2.0.0
+              with:
+                  cmd: build
             - uses: actions/checkout@v2
             - name: Run tests
               run: |
