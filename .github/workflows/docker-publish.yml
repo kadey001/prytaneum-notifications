@@ -38,7 +38,7 @@ jobs:
             - name: Run tests
               run: |
                   if [ -f docker-compose.test.yml ]; then
-                    docker-compose --file docker-compose.test.yaml build
+                    docker-compose --file docker-compose.test.yaml build --no-cache build
                     docker-compose --file docker-compose.test.yaml run sut
                   else
                     docker build . --file Dockerfile
