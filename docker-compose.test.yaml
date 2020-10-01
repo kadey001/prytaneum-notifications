@@ -31,4 +31,3 @@ services:
     #     build: ./seed
     #     links:
     #         - mongo
-image: test
