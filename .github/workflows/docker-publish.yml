@@ -38,11 +38,13 @@ jobs:
             - uses: borales/actions-yarn@v2.0.0
               with:
                   cmd: install
+            - name: Run yarn Build
+              run: yarn build
 
             # Run ESLint
-            - uses: borales/actions-yarn@v2.0.0
-              with:
-                  cmd: build
+#             - uses: borales/actions-yarn@v2.0.0
+#               with:
+#                   cmd: build
             - uses: actions/checkout@v2
             - name: Run tests
               run: docker-compose --file docker-compose.test.yaml run sut
