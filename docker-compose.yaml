@@ -1,11 +1,5 @@
 version: '3.8'
 services:
-    sut:
-        build:
-            context: .
-            target: BASE_IMAGE
-        depends_on: 
-            - notification-service
     notification-service:
         build:
             context: .
