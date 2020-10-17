@@ -45,13 +45,14 @@ jobs:
                 envkey_MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
                 envkey_MAILGUN_FROM_EMAIL: ${{ secrets.MAILGUN_FROM_EMAIL }}
                 file_name: .env
+          - name: Build Docker Image
+            run: |
+                docker-compose --file docker-compose.test.yaml build notification-service
           - name: Run tests
             uses: ziishaned/jest-reporter-action@v0.0.1
             with:
               github-token: ${{ secrets.GITHUB_TOKEN }}
-              test-command: "|
-                docker-compose --file docker-compose.test.yaml build notification-service
-                docker-compose --file docker-compose.test.yaml run notification-service"
+              test-command: "docker-compose --file docker-compose.test.yaml run notification-service"
 
     # Push image to GitHub Packages.
     # See also https://docs.docker.com/docker-hub/builds/
