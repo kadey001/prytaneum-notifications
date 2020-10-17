@@ -44,7 +44,7 @@ jobs:
               envkey_MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
               envkey_MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
               envkey_MAILGUN_FROM_EMAIL: ${{ secrets.MAILGUN_FROM_EMAIL }}
-                file_name: .env
+              file_name: .env
           - name: Build + Test in Docker
             run: |
               docker-compose --file docker-compose.test.yaml build notification-service
