@@ -49,8 +49,8 @@ jobs:
             uses: ziishaned/jest-reporter-action@v0.0.1
             with:
               github-token: ${{ secrets.GITHUB_TOKEN }}
-              test-command: |
-                "docker-compose --file docker-compose.test.yaml build notification-service &&
+              test-command: "|
+                docker-compose --file docker-compose.test.yaml build notification-service
                 docker-compose --file docker-compose.test.yaml run notification-service"
 
     # Push image to GitHub Packages.
