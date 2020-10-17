@@ -47,8 +47,8 @@ jobs:
 #                 cmd: test # will run `yarn test` command
             - name: Run tests
               run: |
-                docker-compose --file docker-compose.test.yaml build sut
-                docker-compose --file docker-compose.test.yaml run sut
+                docker-compose --file docker-compose.test.yaml build notification-service
+                docker-compose --file docker-compose.test.yaml run notification-service
 
     # Push image to GitHub Packages.
     # See also https://docs.docker.com/docker-hub/builds/
