@@ -24,20 +24,15 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             # Run yarn build
-            - uses: actions/checkout@v2
-            - uses: borales/actions-yarn@v2.0.0
-              with:
-                cmd: install # will run `yarn install` command
-            - uses: borales/actions-yarn@v2.0.0
-              with:
-                cmd: build # will run `yarn build` command
-#             - uses: borales/actions-yarn@v2.0.0
-#               with:
-#                 cmd: test # will run `yarn test` command
-            - name: Run tests
-              run: |
-                docker-compose --file docker-compose.test.yaml build notification-service
-                docker-compose --file docker-compose.test.yaml run notification-service
+            - name: yarn-install
+              uses: actions/checkout@v2
+              uses: borales/actions-yarn@v2.0.0
+                with:
+                  cmd: install # will run `yarn install` command
+            - name: yarn-build
+              uses: borales/actions-yarn@v2.0.0
+                with:
+                  cmd: build # will run `yarn build` command
             - name: Make envfile
               uses: SpicyPizza/create-envfile@v1
               with:
@@ -52,6 +47,10 @@ jobs:
                 MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
                 MAILGUN_FROM_EMAIL: ${{ secrets.MAILGUN_FROM_EMAIL }}
                 file_name: .env
+            - name: Run tests
+              run: |
+                docker-compose --file docker-compose.test.yaml build notification-service
+                docker-compose --file docker-compose.test.yaml run notification-service
 
     # Push image to GitHub Packages.
     # See also https://docs.docker.com/docker-hub/builds/
