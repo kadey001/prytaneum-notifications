@@ -5,7 +5,7 @@
     "license": "MIT",
     "scripts": {
         "start": "nodemon -e ts,js,json --exec \"babel-node -x \".ts\" src\"",
-        "test": "jest --watchAll --runInBand --coverage",
+        "test": "jest --watchAll=false --runInBand --coverage",
         "test:ci": "jest",
         "build:types": "tsc --emitDeclarationOnly",
         "build:app": "babel ./src -d ./dist --extensions \".ts\"",
