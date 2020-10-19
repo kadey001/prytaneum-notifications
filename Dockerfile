@@ -40,7 +40,6 @@ ENV MAILGUN_FROM_EMAIL = $MAILGUN_FROM_EMAIL
 FROM node:14.7.0-alpine as production-stage
 WORKDIR /usr/app
 COPY --from=build-stage /usr/app/dist ./dist
-COPY --from=build-stage /usr/app/.env ./
 COPY --from=build-stage /usr/app/node_modules ./node_modules
 EXPOSE 3002
 CMD ["node", "./dist/index.js"]
