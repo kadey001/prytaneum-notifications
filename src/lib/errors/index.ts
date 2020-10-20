@@ -1,4 +1,4 @@
-import { Response } from 'express';
+import { Response, Request, NextFunction } from 'express';
 
 import env from 'config/env';
 import ClientError from './client';
@@ -14,7 +14,9 @@ export { default as ClientError } from './client';
  */
 export const errorHandler = (
     err: Error & { status: number },
-    res: Response,
+    req: Request<any>,
+    res: Response<any>,
+    next: NextFunction
 ): void => {
     if (err instanceof ClientError) {
         res.statusMessage = err.message;
